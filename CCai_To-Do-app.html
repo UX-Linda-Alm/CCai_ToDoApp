@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Att göra</title>
+<meta name="theme-color" content="#0d2344">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--panel:#13316b;--green:#1b6b3b;--green-d:#0f4a27;--ink:#fff;--mute:#aebbd6;--rule:#c7d2e8;--fi:#16233f;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;height:100%;background:#0d2344 linear-gradient(180deg,#143d80,#0d2344 55%,#0a1a36) no-repeat fixed;color:var(--ink);font:15px/1.35 "Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-emoji:text}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid #ffd54a;outline-offset:2px}
+#app{max-width:480px;height:100%;margin:0 auto;display:flex;flex-direction:column}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 12px}
+h1{margin:0;font-size:22px;font-weight:400}
+.av{width:46px;height:46px;border-radius:50%;border:0;background:#1fa04b;padding:0}
+.body{flex:1;min-height:0;display:flex;padding:0 16px}
+.rail{flex:none;width:60px;display:flex;flex-direction:column;gap:6px;overflow-y:auto;scrollbar-width:none}
+.tab{flex:1;min-height:104px;background:var(--green);border-radius:8px 0 0 8px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:8px 0 2px}
+.tab.on{background:var(--panel)}
+.tab.more{flex:1.2}
+.tb,.plus,.arr button{background:none;border:0;padding:0;color:#fff}
+.val{font-size:14px}
+.arr{display:flex}
+.arr button{width:28px;height:28px;font-size:16px}
+.plus{width:34px;height:34px;margin-bottom:8px;border-radius:6px;background:var(--green-d);font-size:28px;line-height:1}
+.panel{flex:1;min-width:0;background:var(--panel);border-radius:0 8px 8px 8px;overflow-y:auto;padding:16px 16px 24px}
+footer{display:flex;gap:16px;padding:10px 16px 12px}
+footer button{flex:1;min-height:48px;border:0;border-radius:6px;background:var(--green-d);font-size:16px}
+.h2{margin:0 0 2px;font-size:19px;font-weight:400}
+.hello{font:22px/1.35 "Lobster Two",cursive,serif;margin:2px 0 8px}
+.psst{font:16px/1.4 "Lobster Two",cursive,serif;margin:10px 0 18px}
+.sh{display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid var(--rule);padding:8px 0 6px;margin:14px 0 4px;font-size:14px}
+.sh.big{font-size:19px;margin-top:18px}
+.row,.cl{display:flex;align-items:center;gap:10px;min-height:44px}
+.open{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:none;border:0;padding:6px 0;text-align:left}
+.open .t{flex:1;min-width:0}
+.open small{display:block;color:var(--mute);font-size:11.5px}
+.done .t b{text-decoration:line-through;opacity:.6}
+.go{color:var(--mute);padding-right:4px}
+.pi{flex:none;width:24px;height:24px;display:inline-grid;place-items:center;border:2px solid;border-radius:3px;background:#fff;font-size:13px;line-height:1;padding:0}
+.p1{color:#c1121f;border-color:#c1121f}
+.p2{color:#e0a800;background:#fff6cf;border-color:#f1dc85}
+.p3{color:#143d80;border-color:#143d80}
+.pi.d{background:#2fa35b;border-color:#2fa35b;color:#fff;border-radius:50%}
+.empty{color:var(--mute);margin:18px 0}
+.srch{width:100%;background:none;border:0;border-bottom:1.5px solid var(--rule);font-size:19px;padding:4px 0 8px;outline-offset:4px}
+.srch::placeholder{color:#fff;opacity:1}
+.sc{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:8px -16px 0;padding:0 16px 8px;scroll-padding-inline:16px}
+.lc{flex:none;width:74%;scroll-snap-align:start;border-radius:6px;padding:10px 12px 6px}
+.lc h3{margin:0 0 4px;padding-bottom:4px;font-size:17px;font-weight:600;display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.4)}
+.lc .cl{min-height:38px}
+.more-b{display:block;margin:2px 0 0 auto;background:none;border:0;padding:6px 0;font-size:14px}
+.f{display:block;margin-top:12px}
+.lb{display:inline-block;background:var(--green-d);padding:5px 14px;border-radius:8px 8px 0 0;font-size:18px}
+.in{display:block;width:100%;min-height:46px;border:0;border-radius:0 6px 6px 6px;background:#fff;color:var(--fi);padding:10px 14px;font-size:16px}
+textarea.in{min-height:90px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.sg{flex:1;min-height:46px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--green-d);border:2px solid transparent;border-radius:6px;padding:0 8px;font-size:14px}
+.sg.on{border-color:#fff;background:#1b6b3b}
+.sw{width:100%}
+.chip{display:flex;align-items:center;gap:8px;margin-top:8px;background:var(--green-d);border-radius:6px;padding:6px 10px;font-size:14px}
+.chip button{margin-left:auto;background:none;border:0;font-size:14px;text-decoration:underline}
+.chip img{width:56px;height:56px;object-fit:cover;border-radius:4px}
+.cols{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.cols button{width:40px;height:40px;border-radius:50%;border:3px solid transparent}
+.cols button.on{border-color:#fff}
+.act{display:flex;gap:10px;margin-top:20px}
+.act button{flex:1;min-height:48px;border:0;border-radius:6px;background:var(--green);font-size:16px}
+.act .dng{background:#7a1c1c}
+.err{background:#5a1220;border:1px solid #e5484d;border-radius:6px;padding:8px 12px;margin-top:14px}
+#toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#fff;color:var(--fi);padding:10px 16px;border-radius:20px;font-size:14px;max-width:90%;opacity:0;pointer-events:none;transition:opacity .2s}
+#toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="app">
+<header><h1 id="date"></h1><button class="av" data-v="me" aria-label="Ändra namn"><svg viewBox="0 0 46 46" width="46" height="46" aria-hidden="true"><circle cx="23" cy="19" r="9" fill="none" stroke="#0b2a14" stroke-width="2"/><circle cx="20" cy="17" r="1.3" fill="#0b2a14"/><circle cx="26" cy="17" r="1.3" fill="#0b2a14"/><path d="M19 22q4 3 8 0M23 28v8M23 31l-7 3M23 31l7 -4" fill="none" stroke="#0b2a14" stroke-width="2" stroke-linecap="round"/></svg></button></header>
+<div class="body"><nav class="rail" id="rail" aria-label="Vyer"></nav><main class="panel" id="panel"></main></div>
+<footer><button data-v="newlist">+ Ny lista</button><button data-v="add">+ Ny uppgift</button></footer>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+const WD=['söndag','måndag','tisdag','onsdag','torsdag','fredag','lördag'],WS=['sön','mån','tis','ons','tors','fre','lör'],MO=['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
+const COL=['#6a1616','#1d6b3a','#0f2350','#7a4b12','#7a1c1c','#1d4f7a','#4a2a73'];
+const G={1:'▼',2:'✺',3:'✦'},PL=['','Högst prioritet!','Vill gärna få gjort detta:','Om tid finns vore det toppen att…'];
+const cap=s=>s[0].toUpperCase()+s.slice(1),pad=n=>String(n).padStart(2,'0'),uid=()=>Math.random().toString(36).slice(2,9);
+const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)};
+const addD=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
+const addM=(d,n)=>{const m=d.getMonth()+n,dim=new Date(d.getFullYear(),m+1,0).getDate();return new Date(d.getFullYear(),m,Math.min(d.getDate(),dim))};
+const adv=(d,r)=>r==='day'?addD(d,1):r==='week'?addD(d,7):addM(d,r==='year'?12:1);
+const today=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate())};
+const isoWeek=d=>{const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),k=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-k);const y=t.getUTCFullYear();return[y,Math.ceil(((t-Date.UTC(y,0,1))/864e5+1)/7)]};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=s=>document.querySelector(s);
+const KEY='todo.v1';
+let S,V='home',prevV='home',A=today(),draft=null,ldraft=null,curList=null,qs='',armed='',lastV='',tt;
+
+function seed(){const t=today(),d=n=>iso(addD(t,n));
+ const L=(id,name,group,color,icon)=>({id,name,group,color,icon:icon||''});
+ const T=(list,title,prio,due,x)=>Object.assign({id:uid(),list,title,prio,due,time:'',est:'',remind:false,rec:'',desc:'',img:'',file:null,tags:'',done:false},x);
+ return{name:'Hedda',lists:[L('plugga','Plugga','viktig','#6a1616','🎓'),L('stada','Städa','viktig','#1d6b3a'),L('bilen','Bilen','fav','#0f2350','♥'),L('ekonomi','Ekonomi','fav','#1d6b3a'),L('traning','Träning','other','#7a4b12','★'),L('lagenhet','Lägenheten','other','#7a1c1c'),L('djuren','Djuren','other','#1d4f7a'),L('handla','Handla','other','#4a2a73')],
+ tasks:[T('stada','Badrum',1,d(0)),T('djuren','Mata',1,d(0),{time:'08:00',rec:'day',remind:true}),T('handla','Middag',2,d(0),{est:30}),T('stada','Kök',3,d(0)),T('handla','Frukost',3,d(0)),T('plugga','Prov!',1,d(2)),T('plugga','Öva engelska',2,d(1),{est:45}),T('bilen','Tvätta bilen',3,d(4)),T('bilen','Vinterdäck',2,d(-1),{done:true}),T('ekonomi','Hyra',2,d(3),{rec:'month'}),T('ekonomi','Mobil',2,d(9)),T('traning','Promenad',2,d(1),{est:40}),T('traning','Gymma',3,d(3)),T('lagenhet','Ny matta',3,''),T('lagenhet','Tapetsera',3,'')]}}
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}if(!S||!S.tasks)S=seed()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Det gick inte att spara. Lagringen är full.')}}
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2600)}
+const LI=id=>S.lists.find(l=>l.id===id)||{name:'?',color:'#333'};
+
+const pi=(p,s)=>`<span class="pi p${p}" aria-hidden="true">${G[p]}</span>`;
+function cal(l){return`<svg viewBox="0 0 44 38" width="44" height="38" aria-hidden="true"><path d="M12 2v6M32 2v6" stroke="#0f4a27" stroke-width="2.5" stroke-linecap="round"/><rect x="2" y="6" width="40" height="30" rx="3" fill="#2fa35b"/><rect x="2" y="6" width="40" height="11" rx="3" fill="#0f4a27"/><text x="22" y="15" text-anchor="middle" font-size="9" fill="#fff" font-family="Open Sans,sans-serif">${l}</text><path d="M7 24h30M7 30h30" stroke="#d9f5e3" stroke-width="3" stroke-dasharray="2 2.2"/></svg>`}
+const tbl='<svg viewBox="0 0 28 28" width="30" height="30" aria-hidden="true"><rect x="3" y="4" width="22" height="20" rx="2" fill="none" stroke="#fff" stroke-width="2"/><path d="M3 11h22M3 17.5h22M11 4v20" stroke="#fff" stroke-width="2"/></svg>';
+
+function drawRail(){const m=MO[A.getMonth()];
+ const P=[['day','Dag',A.getDate()+'/'+(A.getMonth()+1)],['week','Vecka','v '+isoWeek(A)[1]],['month','Månad',cap(m).slice(0,3)+'.']];
+ const lv=['cats','list','add','newlist'].includes(V);
+ $('#rail').innerHTML=P.map(([k,l,v])=>`<div class="tab${V===k?' on':''}"><button class="tb" data-v="${k}" aria-label="${l}vy">${cal(l)}</button><div class="val">${v}</div><div class="arr"><button data-n="${k}:-1" aria-label="Föregående ${l.toLowerCase()}">←</button><button data-n="${k}:1" aria-label="Nästa ${l.toLowerCase()}">→</button></div></div>`).join('')
+ +`<div class="tab more${lv?' on':''}"><button class="tb" data-v="cats" aria-label="Alla listor">${tbl}</button><button class="plus" data-v="add" aria-label="Ny uppgift">+</button></div>`;
+ const t=new Date();$('#date').textContent=cap(WD[t.getDay()])+', '+t.getDate()+' '+MO[t.getMonth()]}
+
+function meta(t,wd){const d=t.due&&wd?WS[parse(t.due).getDay()]+' '+parse(t.due).getDate()+'/'+(parse(t.due).getMonth()+1):'';
+ return[d,t.time&&'kl '+t.time,t.est&&t.est+' min',t.rec&&'återkommer',t.remind&&'påminnelse'].filter(Boolean).join(', ')}
+function row(t,sl,wd){const m=meta(t,wd);
+ return`<div class="row${t.done?' done':''}"><button class="pi p${t.prio}${t.done?' d':''}" data-d="${t.id}" aria-label="${t.done?'Markera som ej klar':'Markera som klar'}: ${esc(t.title)}">${t.done?'✓':G[t.prio]}</button><button class="open" data-e="${t.id}"><span class="t"><b>${sl?esc(LI(t.list).name)+' &gt; ':''}${esc(t.title)}</b>${m?`<small>${esc(m)}</small>`:''}</span><span class="go" aria-hidden="true">&gt;</span></button></div>`}
+const sortT=(a,b)=>(a.done-b.done)||(a.due||'9').localeCompare(b.due||'9')||(a.time||'').localeCompare(b.time||'');
+function groups(ts,sl,wd){if(!ts.length)return'<p class="empty">Inga uppgifter här än. Tryck på + Ny uppgift för att lägga till en.</p>';
+ ts=[...ts].sort(sortT);return[1,2,3].map(p=>{const g=ts.filter(t=>t.prio===p);return g.length?`<div class="sh"><span>${PL[p]}</span>${pi(p)}</div>`+g.map(t=>row(t,sl,wd)).join(''):''}).join('')}
+
+function home(){const d=iso(today());
+ return`<p class="hello">Välkommen, ${esc(S.name)}!<br>Med hjälp från dina listor kommer du att få mycket gjort idag!</p>
+<svg viewBox="0 0 300 36" width="100%" height="36" aria-hidden="true"><path d="M4 20C40 4 70 36 110 18S190 4 230 20s50 8 66 -4" fill="none" stroke="#c7d2e8" stroke-width="1.3"/><g fill="none" stroke="#c7d2e8" stroke-width="1.1"><ellipse cx="50" cy="14" rx="9" ry="4" transform="rotate(-30 50 14)"/><ellipse cx="95" cy="27" rx="9" ry="4" transform="rotate(30 95 27)"/><ellipse cx="150" cy="12" rx="9" ry="4" transform="rotate(-25 150 12)"/><ellipse cx="205" cy="14" rx="9" ry="4" transform="rotate(25 205 14)"/><ellipse cx="262" cy="22" rx="9" ry="4" transform="rotate(-20 262 22)"/></g></svg>
+<p class="psst">Psst!<br>Bläddra bland flikarna för att överblicka dina uppgifter &amp; lägga till nya utmaningar!</p>
+<div class="sh big"><span>Dagens uppgifter:</span></div>`+groups(S.tasks.filter(t=>t.due===d),true)}
+function inRange(t){if(!t.due)return false;const d=parse(t.due);if(V==='day')return t.due===iso(A);
+ if(V==='week'){const a=isoWeek(d),b=isoWeek(A);return a[0]===b[0]&&a[1]===b[1]}return d.getFullYear()===A.getFullYear()&&d.getMonth()===A.getMonth()}
+function period(){const h=V==='day'?(iso(A)===iso(today())?'Dagens uppgifter:':cap(WD[A.getDay()])+' '+A.getDate()+' '+MO[A.getMonth()]):V==='week'?'Vecka '+isoWeek(A)[1]:cap(MO[A.getMonth()])+' '+A.getFullYear();
+ return`<h2 class="h2">${h}</h2>`+groups(S.tasks.filter(inRange),true,V!=='day')}
+
+function card(l,ts){ts=[...ts].sort(sortT);const n=ts.length;
+ return`<section class="lc" style="background:${l.color}"><h3><span>${esc(l.name)}</span><span aria-hidden="true">${l.icon||''}</span></h3>${n?ts.slice(0,2).map(t=>`<div class="cl${t.done?' done':''}"><button class="pi p${t.prio}${t.done?' d':''}" data-d="${t.id}" aria-label="${t.done?'Markera som ej klar':'Markera som klar'}: ${esc(t.title)}">${t.done?'✓':G[t.prio]}</button><button class="open" data-e="${t.id}"><span class="t"><b>${esc(t.title)}</b></span><span class="go" aria-hidden="true">&gt;</span></button></div>`).join(''):'<p class="empty" style="margin:10px 0">Inga uppgifter ännu</p>'}<button class="more-b" data-l="${l.id}">Se mer${n>2?' ('+n+')':''} ↴</button></section>`}
+const match=(t,q)=>[t.title,t.tags,t.desc].join(' ').toLowerCase().includes(q);
+function fillCats(){const q=qs.trim().toLowerCase();let h='';
+ [['viktig','Viktiga listor!'],['fav','Mina favoritlistor'],['other','Övriga listor']].forEach(([g,title])=>{
+  const cs=S.lists.filter(l=>l.group===g).map(l=>{const all=S.tasks.filter(t=>t.list===l.id),ml=!q||l.name.toLowerCase().includes(q),ts=ml?all:all.filter(t=>match(t,q));return ml||ts.length?card(l,ts):''}).join('');
+  if(cs)h+=`<div class="sh big"><span>${title}</span></div><div class="sc">${cs}</div>`});
+ $('#cl').innerHTML=h||'<p class="empty">Inget matchar sökningen.</p>'}
+function cats(){return`<input class="srch" id="q" type="search" placeholder="Sök" aria-label="Sök bland listor, uppgifter och sökord" value="${esc(qs)}"><div id="cl"></div>`}
+function listView(){const l=LI(curList),ts=S.tasks.filter(t=>t.list===curList);
+ return`<h2 class="h2" style="border-left:8px solid ${l.color};padding-left:10px">${esc(l.name)}</h2>`+groups(ts,false)+`<div class="act"><button data-v="cats">Alla listor</button><button class="dng" data-act="dellist">${armed==='dl'?'Tryck igen för att ta bort':'Ta bort lista'}</button></div>`}
+
+const f=(l,h)=>`<label class="f"><span class="lb">${l}</span>${h}</label>`;
+const inp=(k,v,x='')=>`<input class="in" data-f="${k}" value="${esc(v)}" placeholder="Skriv här…" ${x}>`;
+const blank=()=>({id:null,list:curList&&LI(curList).name!=='?'?curList:(S.lists[0]?S.lists[0].id:'new'),newName:'',title:'',prio:2,due:prevV==='day'?iso(A):'',time:'',est:'',remind:false,rec:'',desc:'',img:'',file:null,tags:'',done:false});
+function form(){const d=draft,R=[['','Aldrig'],['day','Varje dag'],['week','Varje vecka'],['month','Varje månad'],['year','Varje år']];
+ return`<h2 class="h2">${d.id?'Ändra uppgift':'Ny uppgift'}</h2>
+${f('Välj lista:',`<select class="in" data-f="list">${S.lists.map(l=>`<option value="${l.id}"${d.list===l.id?' selected':''}>${esc(l.name)}</option>`).join('')}<option value="new"${d.list==='new'?' selected':''}>+ Ny lista…</option></select>`)}
+${d.list==='new'?f('Listrubrik:',inp('newName',d.newName)):''}
+${f('Uppgift:',inp('title',d.title))}
+<div class="f"><span class="lb">Prio:</span><div class="seg" role="group" aria-label="Prioritet">${[1,2,3].map(p=>`<button type="button" class="sg${d.prio===p?' on':''}" data-p="${p}" aria-pressed="${d.prio===p}">${pi(p)} ${['','Högst','Gärna','Om tid'][p]}</button>`).join('')}</div></div>
+<div class="f"><span class="lb">Deadline:</span><div class="two"><input class="in" type="date" data-f="due" value="${esc(d.due)}" aria-label="Datum"><input class="in" type="time" data-f="time" value="${esc(d.time)}" aria-label="Tid"></div></div>
+${f('Uppskattad tid (minuter):',inp('est',d.est,'type="number" min="0" step="5" inputmode="numeric"').replace('placeholder="Skriv här…"','placeholder="t.ex. 30"'))}
+<div class="f"><span class="lb">Påminnelse:</span><button type="button" class="sg sw${d.remind?' on':''}" role="switch" aria-checked="${d.remind}" data-act="rem">${d.remind?'På':'Av'}</button></div>
+${f('Återkommande:',`<select class="in" data-f="rec">${R.map(([v,l])=>`<option value="${v}"${d.rec===v?' selected':''}>${l}</option>`).join('')}</select>`)}
+${f('Beskrivning:',`<textarea class="in" data-f="desc" placeholder="Skriv här…">${esc(d.desc)}</textarea>`)}
+<div class="f"><span class="lb">Bifoga bild:</span><input class="in" type="file" accept="image/*" data-up="img">${d.img?`<div class="chip"><img src="${d.img}" alt="Bifogad bild"><button type="button" data-act="rmimg">Ta bort</button></div>`:''}</div>
+<div class="f"><span class="lb">Bifoga fil:</span><input class="in" type="file" data-up="file">${d.file?`<div class="chip"><span>${esc(d.file.name)}</span><button type="button" data-act="rmfile">Ta bort</button></div>`:''}</div>
+${f('Extra #sökord:',inp('tags',d.tags).replace('Skriv här…','#hemma, #brådskande'))}
+${d.err?`<div class="err" role="alert">${esc(d.err)}</div>`:''}
+<div class="act"><button data-act="save">Spara uppgift</button>${d.id?`<button class="dng" data-act="del">${armed==='d'?'Tryck igen för att ta bort':'Ta bort'}</button>`:''}</div>`}
+function listForm(){const d=ldraft;
+ return`<h2 class="h2">Ny lista</h2>${f('Listrubrik:',inp('name',d.name))}
+<div class="f"><span class="lb">Kategori:</span><div class="seg" role="group" aria-label="Kategori">${[['viktig','Viktig'],['fav','Favorit'],['other','Övrig']].map(([v,l])=>`<button type="button" class="sg${d.group===v?' on':''}" data-act="grp" data-a="${v}" aria-pressed="${d.group===v}">${l}</button>`).join('')}</div></div>
+<div class="f"><span class="lb">Färg:</span><div class="cols" role="group" aria-label="Färg">${COL.map((c,i)=>`<button type="button" class="${d.color===c?'on':''}" style="background:${c}" data-act="col" data-a="${c}" aria-label="Färg ${i+1}" aria-pressed="${d.color===c}"></button>`).join('')}</div></div>
+${d.err?`<div class="err" role="alert">${esc(d.err)}</div>`:''}<div class="act"><button data-act="savelist">Spara lista</button></div>`}
+const me=()=>`<h2 class="h2">Ditt namn</h2>${f('Namn:',inp('name',S.name).replace('data-f="name"','data-f="name" id="nm"'))}<p class="empty">Namnet visas i välkomsthälsningen och sparas på den här enheten.</p>`;
+
+function draw(){const p=$('#panel'),top=lastV===V?p.scrollTop:0;
+ p.innerHTML=V==='home'?home():['day','week','month'].includes(V)?period():V==='cats'?cats():V==='list'?listView():V==='add'?form():V==='newlist'?listForm():me();
+ if(V==='cats')fillCats();p.scrollTop=top;lastV=V}
+function render(){drawRail();draw()}
+function go(v,id){prevV=V;V=v;armed='';
+ if(v==='add')draft=id?{...S.tasks.find(t=>t.id===id)}:blank();
+ if(v==='newlist')ldraft={name:'',group:'other',color:COL[S.lists.length%COL.length]};
+ render()}
+function toggle(id){const t=S.tasks.find(x=>x.id===id);
+ if(!t.done&&t.rec&&t.due){t.due=iso(adv(parse(t.due),t.rec));toast('Klart! Nästa gång: '+parse(t.due).getDate()+' '+MO[parse(t.due).getMonth()])}
+ else{t.done=!t.done;toast(t.done?'Markerad som klar':'Markerad som ej klar')}
+ save();render()}
+function saveTask(){const d=draft;let L=d.list;
+ if(!d.title.trim())return fail('Skriv vad som ska göras i fältet Uppgift.');
+ if(L==='new'&&!d.newName.trim())return fail('Skriv en listrubrik för den nya listan.');
+ if(L==='new'){L=uid();S.lists.push({id:L,name:d.newName.trim(),group:'other',color:COL[S.lists.length%COL.length],icon:''})}
+ const{err,newName,...t}=d;t.list=L;t.title=t.title.trim();
+ if(t.id){S.tasks[S.tasks.findIndex(x=>x.id===t.id)]=t}else{t.id=uid();S.tasks.push(t)}
+ save();toast('Uppgiften sparades');if(t.due){A=parse(t.due);V='day'}else{curList=L;V='list'}render()}
+function fail(m){(V==='newlist'?ldraft:draft).err=m;draw()}
+function shrink(file,cb){const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,600/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.72))};i.src=r.result};r.readAsDataURL(file)}
+
+document.addEventListener('click',e=>{const b=e.target.closest('[data-v],[data-n],[data-d],[data-e],[data-l],[data-p],[data-act]');if(!b)return;const D=b.dataset;
+ if(D.n){const[k,n]=D.n.split(':');A=k==='day'?addD(A,+n):k==='week'?addD(A,7*n):addM(A,+n);prevV=V;V=k;render()}
+ else if(D.d)toggle(D.d);
+ else if(D.e)go('add',D.e);
+ else if(D.l){curList=D.l;go('list')}
+ else if(D.p){draft.prio=+D.p;draw()}
+ else if(D.v)go(D.v);
+ else{const a=D.act;
+  if(a==='save')saveTask();
+  else if(a==='rem'){draft.remind=!draft.remind;draw()}
+  else if(a==='rmimg'){draft.img='';draw()}
+  else if(a==='rmfile'){draft.file=null;draw()}
+  else if(a==='del'){if(armed!=='d'){armed='d';draw();return}S.tasks=S.tasks.filter(t=>t.id!==draft.id);save();toast('Uppgiften togs bort');V='home';render()}
+  else if(a==='dellist'){if(armed!=='dl'){armed='dl';draw();return}S.tasks=S.tasks.filter(t=>t.list!==curList);S.lists=S.lists.filter(l=>l.id!==curList);save();toast('Listan togs bort');armed='';V='cats';render()}
+  else if(a==='grp'){ldraft.group=D.a;draw()}
+  else if(a==='col'){ldraft.color=D.a;draw()}
+  else if(a==='savelist'){if(!ldraft.name.trim())return fail('Skriv en listrubrik.');const id=uid();S.lists.push({id,name:ldraft.name.trim(),group:ldraft.group,color:ldraft.color,icon:ldraft.group==='fav'?'♥':''});save();toast('Listan sparades');curList=id;V='list';render()}}});
+document.addEventListener('input',e=>{const t=e.target;if(t.id==='q'){qs=t.value;fillCats();return}const k=t.dataset.f;if(!k)return;
+ if(V==='me'){S.name=t.value;save();return}const o=V==='newlist'?ldraft:draft;if(!o)return;o[k]=t.value;if(k==='list')draw()});
+document.addEventListener('change',e=>{const t=e.target,u=t.dataset.up,fl=t.files&&t.files[0];if(!u||!fl)return;
+ if(u==='img')shrink(fl,x=>{draft.img=x;draw()});
+ else if(fl.size>4e5){draft.file={name:fl.name,data:''};toast('Filen är stor, så bara filnamnet sparas.');draw()}
+ else{const r=new FileReader();r.onload=()=>{draft.file={name:fl.name,data:r.result};draw()};r.readAsDataURL(fl)}});
+
+load();render();
+setTimeout(()=>{const t=iso(today()),tm=iso(addD(today(),1)),d=S.tasks.filter(x=>x.remind&&!x.done&&x.due&&x.due<=tm);
+ if(d.length)toast('Påminnelse: '+LI(d[0].list).name+' > '+d[0].title+(d[0].due<t?' är försenad':d[0].due===t?' ska göras idag':' ska göras i morgon')+(d.length>1?' (+'+(d.length-1)+' till)':''))},700);
+</script>
+</body>
+</html>
