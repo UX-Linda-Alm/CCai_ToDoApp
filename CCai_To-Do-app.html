@@ -8,7 +8,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--panel:#13316b;--green:#1b6b3b;--green-d:#0f4a27;--ink:#fff;--mute:#aebbd6;--rule:#c7d2e8;--fi:#16233f;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{
+  --panel:#0D2345;
+  --blue-d:#122F5C;
+  --green:#125E2F;
+  --green-d:#0D4522;
+  --ink:#fff;
+  --mute:#aebbd6;
+  --rule:#c7d2e8;
+  --fi:#16233f;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px)
+}
 *,*::before,*::after{box-sizing:inherit}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;height:100%;background:#0d2344 linear-gradient(180deg,#143d80,#0d2344 55%,#0a1a36) no-repeat fixed;color:var(--ink);font:15px/1.35 "Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-emoji:text}
@@ -22,7 +35,29 @@ h1{margin:0;font-size:22px;font-weight:400}
 .body{flex:1;min-height:0;display:flex;padding:0 16px}
 .rail{flex:none;width:60px;display:flex;flex-direction:column;gap:6px;overflow-y:auto;scrollbar-width:none}
 .tab{flex:1;min-height:104px;background:var(--green);border-radius:8px 0 0 8px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:8px 0 2px}
-.tab.on{background:var(--panel)}
+.tab{background:linear-gradient(90deg,#1b6b3b,#0f4a27)}
+.tab.on{background:linear-gradient(90deg,#0d2150,#13316b)}
+.tab.more.on .plus{background:#0f2350;box-shadow:0 0 0 1px #2b5fb8}
+.tab.more.on .tb svg *{stroke:#c9ffc0}
+.tab:not(.more){justify-content:flex-start;gap:2px;padding-top:12px;min-height:84px}
+.tab .val{min-height:28px;font-size:15px}
+.f{margin-top:16px;background:#0d2350;border-radius:10px;padding:12px 12px 14px}
+.lb{display:flex;align-items:center;gap:8px;background:none;padding:0 0 8px;border-radius:0;font-size:18px}
+.in{border-radius:8px;background:#efefef;min-height:48px}
+.f .chip{background:#173a7a}
+.f .sg{background:#efefef;color:#16233f;border-radius:8px;min-height:48px}
+.f .sg.on{border-color:#22a355;box-shadow:inset 0 0 0 1px #22a355}
+.act{justify-content:center}.act button{flex:0 1 190px;background:#22a355}.act .dng{background:#7a1c1c}
+.ttl{display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid var(--rule);padding-bottom:8px;margin-bottom:4px;font-size:22px}
+details summary{list-style:none}details summary::after{content:"";display:block;width:9px;height:9px;margin:8px auto 0;border:solid var(--mute);border-width:0 2px 2px 0;transform:rotate(45deg)}details[open] summary::after{transform:rotate(-135deg)}
+.tg{display:flex;align-items:center;gap:10px;background:none;border:0;padding:4px 0 0;font-size:16px}
+.tg i{width:64px;height:34px;border-radius:17px;background:#f2f2f2;position:relative}
+.tg i::after{content:"";position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:#0d2350}
+.tg.on i{background:#22a355}.tg.on i::after{left:34px}
+.tg span{opacity:.5}.tg:not(.on) span:first-child,.tg.on span:last-child{opacity:1}
+.ic{flex:none}.ci{display:inline-flex}
+.cols .ib{width:42px;height:42px;border-radius:8px;background:#efefef;color:#16233f;display:grid;place-items:center;padding:0}
+.cols .ib.on{border-color:#22a355}
 .tab.more{flex:1.2}
 .tb,.plus,.arr button{background:none;border:0;padding:0;color:#fff}
 .val{font-size:14px}
@@ -31,7 +66,7 @@ h1{margin:0;font-size:22px;font-weight:400}
 .plus{width:34px;height:34px;margin-bottom:8px;border-radius:6px;background:var(--green-d);font-size:28px;line-height:1}
 .panel{flex:1;min-width:0;background:var(--panel);border-radius:0 8px 8px 8px;overflow-y:auto;padding:16px 16px 24px}
 footer{display:flex;gap:16px;padding:10px 16px 12px}
-footer button{flex:1;min-height:48px;border:0;border-radius:6px;background:var(--green-d);font-size:16px}
+footer button{flex:1;min-height:48px;border:0;border-radius:6px;background:var(--blue-d);font-size:16px}
 .h2{margin:0 0 2px;font-size:19px;font-weight:400}
 .hello{font:22px/1.35 "Lobster Two",cursive,serif;margin:2px 0 8px}
 .psst{font:16px/1.4 "Lobster Two",cursive,serif;margin:10px 0 18px}
@@ -77,15 +112,35 @@ textarea.in{min-height:90px;resize:vertical}
 .err{background:#5a1220;border:1px solid #e5484d;border-radius:6px;padding:8px 12px;margin-top:14px}
 #toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#fff;color:var(--fi);padding:10px 16px;border-radius:20px;font-size:14px;max-width:90%;opacity:0;pointer-events:none;transition:opacity .2s}
 #toast.on{opacity:1}
+.sb{display:flex;justify-content:space-between;align-items:center;padding:6px 18px 0;font-size:13px}
+.sbr{display:flex;gap:8px;align-items:center}
+.bat,.bdg{border-radius:10px;padding:0 7px;font-size:12px;background:#e9eefb;color:#13316b}
+.bdg{background:#ff6b8b;color:#fff}.bdg:empty{display:none}
+.ck{flex:none;width:24px;height:24px;border:2px solid #cfd9ee;border-radius:5px;background:transparent;padding:0;overflow:hidden;display:inline-grid;place-items:center;color:#3ddc84;font-size:22px;line-height:1}
+.ck i{display:block;width:100%;height:100%;background:linear-gradient(135deg,#ffd54a 50%,transparent 50%)}
+.ck.s2{border-color:transparent}
+.done .t b{color:#8a96b0}
+.sh{background:#0c2150;border:0;border-radius:8px;padding:8px 10px}
+.hl{background:none;border:0;padding:0;font-weight:600;font-size:17px;text-align:left}
+.sub{display:flex;gap:6px;margin-top:6px}.sub button{background:none;border:0;width:36px}
+details summary{cursor:pointer;margin-top:18px;color:var(--mute);text-align:center}
+#dlg{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,12,30,.6);z-index:5;padding:20px}
+#dlg[hidden]{display:none}
+#dlg .box{background:var(--panel);border-radius:12px;padding:20px;max-width:340px;width:100%}
+.fx{position:fixed;inset:0;pointer-events:none;z-index:9}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.chipb{border:0;border-radius:16px;padding:6px 14px}
+@media(min-width:720px){#app{max-width:980px}.sc{flex-wrap:wrap;overflow:visible;margin:8px 0 0;padding:0}.lc{width:calc(33.3% - 8px)}.panel{padding:20px 28px 28px}.rail{width:76px}.f,.act,details{max-width:560px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <div id="app">
+<div class="sb" aria-hidden="true"><span id="clk"></span><span class="sbr"><span class="bdg" id="bdg"></span><span class="bat">100</span></span></div>
 <header><h1 id="date"></h1><button class="av" data-v="me" aria-label="Ändra namn"><svg viewBox="0 0 46 46" width="46" height="46" aria-hidden="true"><circle cx="23" cy="19" r="9" fill="none" stroke="#0b2a14" stroke-width="2"/><circle cx="20" cy="17" r="1.3" fill="#0b2a14"/><circle cx="26" cy="17" r="1.3" fill="#0b2a14"/><path d="M19 22q4 3 8 0M23 28v8M23 31l-7 3M23 31l7 -4" fill="none" stroke="#0b2a14" stroke-width="2" stroke-linecap="round"/></svg></button></header>
 <div class="body"><nav class="rail" id="rail" aria-label="Vyer"></nav><main class="panel" id="panel"></main></div>
 <footer><button data-v="newlist">+ Ny lista</button><button data-v="add">+ Ny uppgift</button></footer>
 </div>
+<div id="dlg" hidden role="dialog" aria-modal="true" aria-labelledby="dq"><div class="box"><p id="dq" class="h2">Är uppgiften slutförd?</p><div class="act"><button data-act="yes">Ja</button><button data-act="no">Inte än</button></div></div></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <script>
 const WD=['söndag','måndag','tisdag','onsdag','torsdag','fredag','lördag'],WS=['sön','mån','tis','ons','tors','fre','lör'],MO=['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
@@ -121,7 +176,7 @@ const tbl='<svg viewBox="0 0 28 28" width="30" height="30" aria-hidden="true"><r
 function drawRail(){const m=MO[A.getMonth()];
  const P=[['day','Dag',A.getDate()+'/'+(A.getMonth()+1)],['week','Vecka','v '+isoWeek(A)[1]],['month','Månad',cap(m).slice(0,3)+'.']];
  const lv=['cats','list','add','newlist'].includes(V);
- $('#rail').innerHTML=P.map(([k,l,v])=>`<div class="tab${V===k?' on':''}"><button class="tb" data-v="${k}" aria-label="${l}vy">${cal(l)}</button><div class="val">${v}</div><div class="arr"><button data-n="${k}:-1" aria-label="Föregående ${l.toLowerCase()}">←</button><button data-n="${k}:1" aria-label="Nästa ${l.toLowerCase()}">→</button></div></div>`).join('')
+ $('#rail').innerHTML=P.map(([k,l,v])=>`<div class="tab${V===k||(k==='day'&&V==='home')?' on':''}"><button class="tb val" data-v="${k}" aria-label="${l}vy">${v}</button><div class="arr"><button data-n="${k}:-1" aria-label="Föregående ${l.toLowerCase()}">←</button><button data-n="${k}:1" aria-label="Nästa ${l.toLowerCase()}">→</button></div></div>`).join('')
  +`<div class="tab more${lv?' on':''}"><button class="tb" data-v="cats" aria-label="Alla listor">${tbl}</button><button class="plus" data-v="add" aria-label="Ny uppgift">+</button></div>`;
  const t=new Date();$('#date').textContent=cap(WD[t.getDay()])+', '+t.getDate()+' '+MO[t.getMonth()]}
 
@@ -133,11 +188,11 @@ const sortT=(a,b)=>(a.done-b.done)||(a.due||'9').localeCompare(b.due||'9')||(a.t
 function groups(ts,sl,wd){if(!ts.length)return'<p class="empty">Inga uppgifter här än. Tryck på + Ny uppgift för att lägga till en.</p>';
  ts=[...ts].sort(sortT);return[1,2,3].map(p=>{const g=ts.filter(t=>t.prio===p);return g.length?`<div class="sh"><span>${PL[p]}</span>${pi(p)}</div>`+g.map(t=>row(t,sl,wd)).join(''):''}).join('')}
 
-function home(){const d=iso(today());
+function welcome(){const d=iso(today());
  return`<p class="hello">Välkommen, ${esc(S.name)}!<br>Med hjälp från dina listor kommer du att få mycket gjort idag!</p>
 <svg viewBox="0 0 300 36" width="100%" height="36" aria-hidden="true"><path d="M4 20C40 4 70 36 110 18S190 4 230 20s50 8 66 -4" fill="none" stroke="#c7d2e8" stroke-width="1.3"/><g fill="none" stroke="#c7d2e8" stroke-width="1.1"><ellipse cx="50" cy="14" rx="9" ry="4" transform="rotate(-30 50 14)"/><ellipse cx="95" cy="27" rx="9" ry="4" transform="rotate(30 95 27)"/><ellipse cx="150" cy="12" rx="9" ry="4" transform="rotate(-25 150 12)"/><ellipse cx="205" cy="14" rx="9" ry="4" transform="rotate(25 205 14)"/><ellipse cx="262" cy="22" rx="9" ry="4" transform="rotate(-20 262 22)"/></g></svg>
-<p class="psst">Psst!<br>Bläddra bland flikarna för att överblicka dina uppgifter &amp; lägga till nya utmaningar!</p>
-<div class="sh big"><span>Dagens uppgifter:</span></div>`+groups(S.tasks.filter(t=>t.due===d),true)}
+<p class="psst">Psst!<br>Växla mellan flikarna för att se dina uppgifter &amp; listor!</p>
+<div class="sh big"><span>Dagens uppgifter:</span></div>`}
 function inRange(t){if(!t.due)return false;const d=parse(t.due);if(V==='day')return t.due===iso(A);
  if(V==='week'){const a=isoWeek(d),b=isoWeek(A);return a[0]===b[0]&&a[1]===b[1]}return d.getFullYear()===A.getFullYear()&&d.getMonth()===A.getMonth()}
 function period(){const h=V==='day'?(iso(A)===iso(today())?'Dagens uppgifter:':cap(WD[A.getDay()])+' '+A.getDate()+' '+MO[A.getMonth()]):V==='week'?'Vecka '+isoWeek(A)[1]:cap(MO[A.getMonth()])+' '+A.getFullYear();
@@ -155,9 +210,9 @@ function cats(){return`<input class="srch" id="q" type="search" placeholder="Sö
 function listView(){const l=LI(curList),ts=S.tasks.filter(t=>t.list===curList);
  return`<h2 class="h2" style="border-left:8px solid ${l.color};padding-left:10px">${esc(l.name)}</h2>`+groups(ts,false)+`<div class="act"><button data-v="cats">Alla listor</button><button class="dng" data-act="dellist">${armed==='dl'?'Tryck igen för att ta bort':'Ta bort lista'}</button></div>`}
 
-const f=(l,h)=>`<label class="f"><span class="lb">${l}</span>${h}</label>`;
+const f=(l,h)=>{const[i,t]=l.includes('|')?l.split('|'):['',l];return`<label class="f"><span class="lb">${i?ico(i)+' ':''}${t}</span>${h}</label>`};
 const inp=(k,v,x='')=>`<input class="in" data-f="${k}" value="${esc(v)}" placeholder="Skriv här…" ${x}>`;
-const blank=()=>({id:null,list:curList&&LI(curList).name!=='?'?curList:(S.lists[0]?S.lists[0].id:'new'),newName:'',title:'',prio:2,due:prevV==='day'?iso(A):'',time:'',est:'',remind:false,rec:'',desc:'',img:'',file:null,tags:'',done:false});
+const blank=()=>({id:null,list:curList&&LI(curList).name!=='?'?curList:(S.lists[0]?S.lists[0].id:'new'),newName:'',title:'',prio:2,due:prevV==='day'?iso(A):'',time:'',est:'15',remind:false,rec:'',desc:'',img:'',file:null,tags:'',done:false,st:0,subs:[]});
 function form(){const d=draft,R=[['','Aldrig'],['day','Varje dag'],['week','Varje vecka'],['month','Varje månad'],['year','Varje år']];
  return`<h2 class="h2">${d.id?'Ändra uppgift':'Ny uppgift'}</h2>
 ${f('Välj lista:',`<select class="in" data-f="list">${S.lists.map(l=>`<option value="${l.id}"${d.list===l.id?' selected':''}>${esc(l.name)}</option>`).join('')}<option value="new"${d.list==='new'?' selected':''}>+ Ny lista…</option></select>`)}
@@ -219,7 +274,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-v],[data-n
   else if(a==='dellist'){if(armed!=='dl'){armed='dl';draw();return}S.tasks=S.tasks.filter(t=>t.list!==curList);S.lists=S.lists.filter(l=>l.id!==curList);save();toast('Listan togs bort');armed='';V='cats';render()}
   else if(a==='grp'){ldraft.group=D.a;draw()}
   else if(a==='col'){ldraft.color=D.a;draw()}
-  else if(a==='savelist'){if(!ldraft.name.trim())return fail('Skriv en listrubrik.');const id=uid();S.lists.push({id,name:ldraft.name.trim(),group:ldraft.group,color:ldraft.color,icon:ldraft.group==='fav'?'♥':''});save();toast('Listan sparades');curList=id;V='list';render()}}});
+  else if(a==='savelist'){if(!ldraft.name.trim())return fail('Skriv en listrubrik.');const id=uid();S.lists.push({id,name:ldraft.name.trim(),group:ldraft.group,color:ldraft.color,icon:ldraft.icon||(ldraft.group==='fav'?'heart':'')});save();toast('Listan sparades');curList=id;V='list';render()}}});
 document.addEventListener('input',e=>{const t=e.target;if(t.id==='q'){qs=t.value;fillCats();return}const k=t.dataset.f;if(!k)return;
  if(V==='me'){S.name=t.value;save();return}const o=V==='newlist'?ldraft:draft;if(!o)return;o[k]=t.value;if(k==='list')draw()});
 document.addEventListener('change',e=>{const t=e.target,u=t.dataset.up,fl=t.files&&t.files[0];if(!u||!fl)return;
@@ -227,9 +282,144 @@ document.addEventListener('change',e=>{const t=e.target,u=t.dataset.up,fl=t.file
  else if(fl.size>4e5){draft.file={name:fl.name,data:''};toast('Filen är stor, så bara filnamnet sparas.');draw()}
  else{const r=new FileReader();r.onload=()=>{draft.file={name:fl.name,data:r.result};draw()};r.readAsDataURL(fl)}});
 
-load();render();
+load();
 setTimeout(()=>{const t=iso(today()),tm=iso(addD(today(),1)),d=S.tasks.filter(x=>x.remind&&!x.done&&x.due&&x.due<=tm);
  if(d.length)toast('Påminnelse: '+LI(d[0].list).name+' > '+d[0].title+(d[0].due<t?' är försenad':d[0].due===t?' ska göras idag':' ska göras i morgon')+(d.length>1?' (+'+(d.length-1)+' till)':''))},700);
+</script>
+<script>
+/* v2 */
+S.tasks.forEach(t=>{if(t.st==null)t.st=t.done?2:0;t.done=t.st===2;t.subs=t.subs||[]});S.inv=S.inv||[];
+PL[1]='Först vill jag…';PL[2]='Sedan vill jag…';PL[3]='Om jag har tid…';
+const S2='fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"';
+const IC={heart:'<path d="M12 21s-8-5.3-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.7-8 11-8 11z"/>',star:'<path d="M12 2l2.9 6.6 7.1.7-5.3 4.7 1.5 7-6.2-3.7L5.8 21l1.5-7L2 9.3l7.1-.7z"/>',pencil:'<path d="M3 17.3V21h3.7L17.8 9.9l-3.7-3.7zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7z"/>',bell:'<path d="M12 22a2.5 2.5 0 0 0 2.5-2.5h-5A2.5 2.5 0 0 0 12 22zm7-6v-5a7 7 0 0 0-5-6.7V3a2 2 0 0 0-4 0v1.3A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/>',
+hash:`<path d="M9.5 3L7.5 21M16.5 3l-2 18M4 9h17M3 15h17" ${S2}/>`,clock:`<circle cx="12" cy="12" r="9.5" ${S2}/><path d="M12 6.5V12l3.5 2" ${S2}/>`,alarm:`<circle cx="12" cy="13" r="8" ${S2}/><path d="M12 8.5V13l3 2M3.5 5.5L7 3M20.5 5.5L17 3" ${S2}/>`,
+camera:'<path fill-rule="evenodd" d="M5 6h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm7 3.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z"/>',list:`<rect x="3" y="4" width="18" height="16" rx="2" ${S2}/><path d="M3 10h18M3 15h18M9 10v10" ${S2}/>`,
+paw:'<ellipse cx="12" cy="16.5" rx="5" ry="4"/><circle cx="5.5" cy="11" r="2.2"/><circle cx="9.5" cy="6.5" r="2.2"/><circle cx="14.5" cy="6.5" r="2.2"/><circle cx="18.5" cy="11" r="2.2"/>',
+grad:'<path d="M12 3L1 9l11 6 9-4.9V16h2V9z"/><path d="M5 13.5v4c0 1.7 3.1 3 7 3s7-1.3 7-3v-4l-7 3.8z"/>',cart:`<path d="M2 3h3.2l3 11h11l2.3-8H6.6" ${S2}/><circle cx="9.5" cy="19" r="1.8"/><circle cx="17.5" cy="19" r="1.8"/>`,
+basket:`<path d="M2.5 9.5h19l-1.8 10H4.3z"/><path d="M7 9.5L10 4M17 9.5L14 4" ${S2}/>`,bag:`<path d="M5 8h14l1 13H4z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8" ${S2}/>`,
+broom:'<path d="M19.5 2.5l2 2-8 8-2-2z"/><path d="M10 11.5l2.5 2.5C12 18 9 21 3 21c1-1 1-3 1.5-5S8 11.5 10 11.5z"/>',bath:`<path d="M3 11h18v2a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"/><path d="M6 19l-1 2M18 19l1 2M6 11V6a2.5 2.5 0 0 1 5 0" ${S2}/>`,flag:`<path d="M5 3v19" ${S2}/><path d="M6 4h13l-3 4.5 3 4.5H6z"/>`};
+const ico=(n,s=18)=>IC[n]?`<svg class="ic" viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor" aria-hidden="true">${IC[n]}</svg>`:esc(n||'');
+const MI={plugga:'grad',stada:'broom',handla:'cart',djuren:'paw',bilen:'heart',traning:'star',ekonomi:'bag',lagenhet:'bath'};
+S.lists.forEach(l=>{if(MI[l.id]&&!IC[l.icon])l.icon=MI[l.id]});save();
+const LIC=['paw','bath','flag','grad','bell','heart','star','cart','basket','bag','broom','list'];
+function listForm(){const d=ldraft;
+ return`<h2 class="h2 ttl">Ny lista…<span>${ico('pencil',16)}</span></h2>${f('list|Listrubrik *',inp('name',d.name))}
+<div class="f"><span class="lb">Kategori</span><div class="seg" role="group" aria-label="Kategori">${[['viktig','Viktig'],['fav','Favorit'],['other','Övrig']].map(([v,l])=>`<button type="button" class="sg${d.group===v?' on':''}" data-act="grp" data-a="${v}" aria-pressed="${d.group===v}">${l}</button>`).join('')}</div></div>
+<div class="f"><span class="lb">Ikon</span><div class="cols" role="group" aria-label="Ikon">${LIC.map(n=>`<button type="button" class="ib${d.icon===n?' on':''}" data-act="ico" data-a="${n}" aria-label="${n}" aria-pressed="${d.icon===n}">${ico(n,20)}</button>`).join('')}</div></div>
+<div class="f"><span class="lb">Färg</span><div class="cols" role="group" aria-label="Färg">${COL.map((c,i)=>`<button type="button" class="${d.color===c?'on':''}" style="background:${c}" data-act="col" data-a="${c}" aria-label="Färg ${i+1}" aria-pressed="${d.color===c}"></button>`).join('')}</div></div>
+${d.err?`<div class="err" role="alert">${esc(d.err)}</div>`:''}<div class="act"><button data-act="savelist">Spara lista</button></div>`}
+let OPEN={},curT=null,cfm=null,AC,inv='',bk='home';
+const sortP=(a,b)=>(a.st===2)-(b.st===2)||a.prio-b.prio||(a.due||'9').localeCompare(b.due||'9')||(a.time||'').localeCompare(b.time||'');
+const chk=t=>`<button class="ck s${t.st}" data-d="${t.id}" aria-label="${['Markera som påbörjad','Markera som slutförd','Ångra slutförd'][t.st]}: ${esc(t.title)}">${t.st===2?'★':t.st===1?'<i></i>':''}</button>`;
+function row(t,sl,wd){const m=meta(t,wd),n=t.subs.length,sd=t.subs.filter(s=>s.d).length,mm=[m,n&&sd+'/'+n+' delmål'].filter(Boolean).join(', ');
+ return`<div class="row${t.st===2?' done':''}">${chk(t)}${t.st===2?'':pi(t.prio)}<button class="open" data-e="${t.id}"><span class="t"><b>${sl?esc(LI(t.list).name)+' &gt; ':''}${esc(t.title)}</b>${mm?`<small>${esc(mm)}</small>`:''}</span><span class="go" aria-hidden="true">&gt;</span></button></div>`}
+function groups(ts,sl,wd){if(!ts.length)return'<p class="empty">Inga uppgifter här än. Tryck på + Ny uppgift.</p>';ts=[...ts].sort(sortP);
+ const op=ts.filter(t=>t.st!==2),dn=ts.filter(t=>t.st===2);
+ return[1,2,3].map(p=>{const g=op.filter(t=>t.prio===p);return g.length?`<div class="sh"><span>${PL[p]}</span>${pi(p)}</div>`+g.map(t=>row(t,sl,wd)).join(''):''}).join('')+(dn.length?`<div class="sh"><span>Klart!</span><span style="color:#3ddc84" aria-hidden="true">★</span></div>`+dn.map(t=>row(t,sl,wd)).join(''):'')}
+function card(l,ts){ts=[...ts].sort(sortP);const n=ts.length,o=OPEN[l.id],sh=o?ts:ts.slice(0,2);
+ return`<section class="lc" style="background:${l.color}"><h3><button class="hl" data-lv="${l.id}">${esc(l.name)}</button><span class="ci" aria-hidden="true">${ico(l.icon,20)}</span></h3>${n?sh.map(t=>`<div class="cl${t.st===2?' done':''}">${chk(t)}<button class="open" data-e="${t.id}"><span class="t"><b>${esc(t.title)}</b></span>${t.st===2?'':pi(t.prio)}<span class="go" aria-hidden="true">&gt;</span></button></div>`).join(''):'<p class="empty" style="margin:10px 0">Inga uppgifter ännu</p>'}${n>2?`<button class="more-b" data-x="${l.id}" aria-expanded="${!!o}">${o?'Minimera ↥':'Se mer ('+n+') ↴'}</button>`:''}</section>`}
+const occurs=(t,d)=>{if(!t.rec||!t.due||t.st===2)return false;const b=parse(t.due);if(d<b)return false;return t.rec==='day'||(t.rec==='week'&&d.getDay()===b.getDay())||(t.rec==='month'&&d.getDate()===b.getDate())||(t.rec==='year'&&d.getDate()===b.getDate()&&d.getMonth()===b.getMonth())};
+function dayTasks(d){const k=iso(d),ids=new Set();S.tasks.forEach(t=>{if(t.due===k||occurs(t,d))ids.add(t.id)});
+ S.lists.forEach(l=>{const o=S.tasks.filter(t=>t.list===l.id&&t.st!==2).sort(sortP)[0];if(o)ids.add(o.id)});return S.tasks.filter(t=>ids.has(t.id))}
+function period(){const h=V==='day'?(iso(A)===iso(today())?'Dagens uppgifter:':cap(WD[A.getDay()])+' '+A.getDate()+' '+MO[A.getMonth()]):V==='week'?'Vecka '+isoWeek(A)[1]:cap(MO[A.getMonth()])+' '+A.getFullYear();
+ return`<h2 class="h2">${h}</h2>`+groups(V==='day'?dayTasks(A):S.tasks.filter(inRange),true,V!=='day')}
+function home(){return`<input class="srch" id="hq" type="search" placeholder="Sök uppgift, lista eller #sökord" aria-label="Sök" value="${esc(qs)}"><div id="hb"></div>`}
+function fillHome(){const q=qs.trim().toLowerCase();let h;
+ if(q){const ls=S.lists.filter(l=>l.name.toLowerCase().includes(q)),ts=S.tasks.filter(t=>match(t,q)||LI(t.list).name.toLowerCase().includes(q));
+  h=(ls.length?`<div class="chips">${ls.map(l=>`<button class="chipb" style="background:${l.color}" data-lv="${l.id}">${esc(l.name)}</button>`).join('')}</div>`:'')+(ts.length||ls.length?groups(ts,true,true):'<p class="empty">Inget matchar sökningen.</p>')}
+ else h=welcome()+groups(dayTasks(today()),true);
+ $('#hb').innerHTML=h}
+function taskV(){const t=S.tasks.find(x=>x.id===curT);if(!t){V='home';return home()}const m=meta(t,1);
+ return`<h2 class="h2">${esc(LI(t.list).name)} &gt; ${esc(t.title)}</h2><div class="row">${chk(t)}${pi(t.prio)}<span class="t">${['Ej påbörjad','Påbörjad','Slutförd'][t.st]}</span></div>${m?`<p class="empty" style="margin:4px 0">${esc(m)}</p>`:''}${t.desc?`<p>${esc(t.desc)}</p>`:''}
+${t.subs.length?`<div class="sh"><span>Deluppgifter</span></div>`+t.subs.map((s,i)=>`<div class="row${s.d?' done':''}"><button class="ck s${s.d?2:0}" data-sub="${i}" aria-label="Växla delmål: ${esc(s.t)}">${s.d?'★':''}</button><span class="t"><b>${esc(s.t)}</b></span></div>`).join(''):''}
+${t.img?`<img src="${t.img}" alt="Bifogad bild" style="max-width:100%;border-radius:8px;margin-top:10px">`:''}${t.file?`<div class="chip"><span>${esc(t.file.name)}</span>${t.file.data?`<a href="${t.file.data}" download="${esc(t.file.name)}" style="margin-left:auto;color:#fff">Öppna</a>`:''}</div>`:''}${t.tags?`<p class="empty">${esc(t.tags)}</p>`:''}
+<div class="act"><button data-v="${bk}">Tillbaka</button><button data-act="edit">Ändra</button></div>`}
+function meV(){return`<h2 class="h2">Inställningar</h2>${f('Namn:',inp('name',S.name))}
+<div class="f"><span class="lb">Ljud:</span><button type="button" class="sg sw${S.mute?'':' on'}" role="switch" aria-checked="${!S.mute}" data-act="snd">${S.mute?'Av':'På'}</button></div>
+<div class="f"><span class="lb">Bjud in att se dina listor:</span><div class="two"><input class="in" data-g="inv" type="email" placeholder="namn@epost.se" aria-label="E-postadress" value="${esc(inv)}"><button class="sg" data-act="invite">Bjud in</button></div>${S.inv.map((e,i)=>`<div class="chip"><span>${esc(e)}</span><button type="button" data-act="rminv" data-a="${i}">Ta bort</button></div>`).join('')}<button class="sg sw" style="margin-top:10px" data-act="copy">Kopiera länk till appen</button></div>
+<p class="empty">Inbjudningar och uppgifter sparas just nu bara på den här enheten. För live-delning mellan användare krävs en delad databas.</p>`}
+function form(){const d=draft,R=[['','Aldrig'],['day','Varje dag'],['week','Varje vecka'],['month','Varje månad'],['year','Varje år']];
+ return`<h2 class="h2 ttl">${d.id?'Ändra uppgift':'Ny uppgift…'}<span>${ico('pencil',16)}</span></h2>
+${f('heart|Uppgift *',inp('title',d.title))}
+${f('list|Lista *',`<select class="in" data-f="list">${S.lists.map(l=>`<option value="${l.id}"${d.list===l.id?' selected':''}>${esc(l.name)}</option>`).join('')}<option value="new"${d.list==='new'?' selected':''}>+ Ny lista…</option></select>`)}
+${d.list==='new'?f('list|Listrubrik *',inp('newName',d.newName)):''}
+<div class="f"><span class="lb">${ico('star')} Prioritet *</span><div class="seg" role="group" aria-label="Prioritet">${[1,2,3].map(p=>`<button type="button" class="sg${d.prio===p?' on':''}" data-p="${p}" aria-pressed="${d.prio===p}">${pi(p)} ${['','Först','Sedan','Om tid'][p]}</button>`).join('')}</div></div>
+${f('clock|Uppskattad tid (min) *',`<input class="in" type="number" min="1" step="5" inputmode="numeric" data-f="est" value="${esc(d.est)}">`)}
+<div class="f"><span class="lb">${ico('bell')} Påminnelse *</span><button type="button" class="tg${d.remind?' on':''}" role="switch" aria-checked="${d.remind}" aria-label="Påminnelse" data-act="rem"><span>Av</span><i></i><span>På</span></button></div>
+<details${d.id||d.od?' open':''}><summary>Du kan lägga till valfria detaljer</summary>
+<div class="f"><span class="lb">${ico('alarm')} Deadline</span><div class="two"><input class="in" type="date" data-f="due" value="${esc(d.due)}" aria-label="Datum"><input class="in" type="time" data-f="time" value="${esc(d.time)}" aria-label="Tid"></div></div>
+${f('Återkommande',`<select class="in" data-f="rec">${R.map(([v,l])=>`<option value="${v}"${d.rec===v?' selected':''}>${l}</option>`).join('')}</select>`)}
+${f('pencil|Beskrivning',`<textarea class="in" data-f="desc" placeholder="Skriv här…">${esc(d.desc)}</textarea>`)}
+<div class="f"><span class="lb">${ico('list')} Deluppgifter</span>${d.subs.map((s,i)=>`<div class="sub"><input class="in" data-s="${i}" value="${esc(s.t)}" placeholder="Delmål…" aria-label="Deluppgift ${i+1}"><button type="button" data-act="rmsub" data-a="${i}" aria-label="Ta bort deluppgift">✕</button></div>`).join('')}<button type="button" class="sg sw" style="margin-top:8px" data-act="addsub">+ Lägg till deluppgift</button></div>
+<div class="f"><span class="lb">${ico('camera')} Bifoga bild</span><input class="in" type="file" accept="image/*" data-up="img">${d.img?`<div class="chip"><img src="${d.img}" alt="Bifogad bild"><button type="button" data-act="rmimg">Ta bort</button></div>`:''}</div>
+<div class="f"><span class="lb">${ico('camera')} Bifoga fil</span><input class="in" type="file" data-up="file">${d.file?`<div class="chip"><span>${esc(d.file.name)}</span><button type="button" data-act="rmfile">Ta bort</button></div>`:''}</div>
+${f('hash|Extra #sökord',inp('tags',d.tags).replace('Skriv här…','#hemma, #brådskande'))}</details>
+${d.err?`<div class="err" role="alert">${esc(d.err)}</div>`:''}
+<div class="act"><button data-act="save">Spara uppgift</button>${d.id?`<button class="dng" data-act="del">${armed==='d'?'Tryck igen för att ta bort':'Ta bort'}</button>`:''}</div>`}
+function saveTask(){const d=draft;let L=d.list;
+ if(!d.title.trim())return fail('Skriv vad som ska göras i fältet Uppgift.');
+ if(L==='new'&&!d.newName.trim())return fail('Skriv en listrubrik för den nya listan.');
+ if(!(+d.est>0))return fail('Ange uppskattad tid i minuter.');
+ if(L==='new'){L=uid();S.lists.push({id:L,name:d.newName.trim(),group:'other',color:COL[S.lists.length%COL.length],icon:''})}
+ const{err,newName,od,...t}=d;t.list=L;t.title=t.title.trim();t.subs=t.subs.filter(s=>s.t.trim());t.done=t.st===2;
+ if(t.id){S.tasks[S.tasks.findIndex(x=>x.id===t.id)]=t}else{t.id=uid();S.tasks.push(t)}
+ save();toast('Uppgiften sparades');if(t.due){A=parse(t.due);V='day'}else{curList=L;V='list'}render()}
+function go(v,id){prevV=V;V=v;armed='';
+ if(v==='add')draft=id?JSON.parse(JSON.stringify(S.tasks.find(t=>t.id===id))):blank();
+ if(v==='task'){curT=id;bk=['add','task'].includes(prevV)?bk:prevV}
+ if(v==='newlist')ldraft={name:'',group:'other',color:COL[S.lists.length%COL.length]};
+ render()}
+function draw(){const p=$('#panel'),top=lastV===V?p.scrollTop:0;
+ p.innerHTML=V==='home'?home():['day','week','month'].includes(V)?period():V==='cats'?cats():V==='list'?listView():V==='add'?form():V==='newlist'?listForm():V==='task'?taskV():meV();
+ if(V==='cats')fillCats();if(V==='home')fillHome();p.scrollTop=top;lastV=V}
+function sb(){const n=new Date(),k=iso(today());$('#clk').textContent=pad(n.getHours())+':'+pad(n.getMinutes());const c=S.tasks.filter(t=>t.st!==2&&t.due&&t.due<=k).length;$('#bdg').textContent=c||''}
+function render(){drawRail();draw();sb()}
+function tap(id){const t=S.tasks.find(x=>x.id===id);
+ if(t.st===0){t.st=1;toast('Påbörjad')}
+ else if(t.st===1){cfm=id;$('#dq').textContent='Är ”'+t.title+'” slutförd?';$('#dlg').hidden=false;$('#dlg [data-act=yes]').focus();return}
+ else{t.st=0;t.done=false;toast('Ångrad')}
+ save();render()}
+function fin(id){const t=S.tasks.find(x=>x.id===id);if(!t)return;
+ if(t.rec&&t.due){t.due=iso(adv(parse(t.due),t.rec));t.st=0;t.done=false;toast('Klart! Nästa gång: '+parse(t.due).getDate()+' '+MO[parse(t.due).getMonth()])}else{t.st=2;t.done=true}
+ save();render();const all=S.tasks.filter(x=>x.list===t.list).every(x=>x.st===2);party(all?2:1,all?'Hela listan '+LI(t.list).name+' är klar!':null)}
+function sound(lv){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();const t0=AC.currentTime+.02,big=lv>1,out=AC.createGain();out.gain.value=.9;out.connect(AC.destination);
+ const horn=(f,s,len,g)=>{[1,2,3].forEach(m=>{const o=AC.createOscillator(),fl=AC.createBiquadFilter(),v=AC.createGain(),a=g/(m*1.4);o.type='sawtooth';o.frequency.value=f*m;fl.type='lowpass';fl.frequency.setValueAtTime(900,t0+s);fl.frequency.linearRampToValueAtTime(2600,t0+s+.08);fl.frequency.linearRampToValueAtTime(1500,t0+s+len);v.gain.setValueAtTime(0,t0+s);v.gain.linearRampToValueAtTime(a,t0+s+.03);v.gain.setValueAtTime(a,t0+s+len-.08);v.gain.linearRampToValueAtTime(0,t0+s+len);o.connect(fl);fl.connect(v);v.connect(out);o.start(t0+s);o.stop(t0+s+len+.02)})};
+ (big?[[523,0,.14],[523,.16,.14],[523,.32,.14],[659,.5,.3],[784,.85,.3],[1047,1.2,1]]:[[523,0,.12],[523,.14,.12],[523,.28,.12],[784,.45,.7]]).forEach(([f,s,len])=>horn(f,s,len,.09));
+ 
+ 
+ }catch(e){}}
+function soundOld(lv){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const t0=AC.currentTime;
+ const tone=(f,s,d,ty,g)=>{const o=AC.createOscillator(),v=AC.createGain();o.type=ty;o.frequency.value=f;v.gain.setValueAtTime(g,t0+s);v.gain.exponentialRampToValueAtTime(.001,t0+s+d);o.connect(v).connect(AC.destination);o.start(t0+s);o.stop(t0+s+d)};
+ if(lv===1){[523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.25,'triangle',.15));try{const u=new SpeechSynthesisUtterance('Jiihoo!');u.lang='sv-SE';u.pitch=1.6;u.rate=1.1;speechSynthesis.speak(u)}catch(e){}}
+ else{[[392,0],[392,.18],[392,.36],[523,.54],[659,.9],[784,1.25]].forEach(([f,s])=>{tone(f,s,.5,'sawtooth',.1);tone(f*2,s,.5,'square',.04)});
+  const n=AC.sampleRate*3,b=AC.createBuffer(1,n,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(Math.random()<.03?1:.25)*Math.min(1,i/9e3)*Math.max(0,1-i/n);
+  const s=AC.createBufferSource(),fl=AC.createBiquadFilter(),v=AC.createGain();s.buffer=b;fl.type='bandpass';fl.frequency.value=2500;v.gain.value=.5;s.connect(fl).connect(v).connect(AC.destination);s.start(t0+1.2)}}catch(e){}}
+function party(lv,msg){if(msg)toast(msg);if(!S.mute)sound(lv);if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ const c=document.createElement('canvas');c.className='fx';c.width=innerWidth;c.height=innerHeight;document.body.appendChild(c);
+ const x=c.getContext('2d'),end=Date.now()+(lv>1?4500:1800),P=[];
+ for(let i=0;i<(lv>1?220:90);i++)P.push({x:Math.random()*c.width,y:-Math.random()*c.height*.6,vx:(Math.random()-.5)*3,vy:2+Math.random()*4,r:2+Math.random()*4,c:['#ffd54a','#3ddc84','#ff6b8b','#6ec6ff','#fff'][Math.random()*5|0],a:Math.random()*6});
+ (function f(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.x+=p.vx+Math.sin(p.a+=.1);p.y+=p.vy;if(p.y>c.height&&Date.now()<end){p.y=-10;p.x=Math.random()*c.width}x.fillStyle=p.c;x.fillRect(p.x,p.y,p.r,p.r*1.6)});if(P.some(p=>p.y<c.height))requestAnimationFrame(f);else c.remove()})()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-e],[data-x],[data-lv],[data-sub],[data-act],[data-d]');if(!b)return;const D=b.dataset,a=D.act;let h=true;
+ if(D.d)tap(D.d);
+ else if(D.e)go('task',D.e);
+ else if(D.x){OPEN[D.x]=!OPEN[D.x];draw()}
+ else if(D.lv){curList=D.lv;go('list')}
+ else if(D.sub!==undefined){const t=S.tasks.find(x=>x.id===curT);t.subs[+D.sub].d=!t.subs[+D.sub].d;save();draw()}
+ else if(a==='yes'){const i=cfm;cfm=null;$('#dlg').hidden=true;fin(i)}
+ else if(a==='no'){cfm=null;$('#dlg').hidden=true}
+ else if(a==='edit')go('add',curT);
+ else if(a==='addsub'){draft.subs.push({t:'',d:false});draft.od=true;draw();const s=document.querySelectorAll('[data-s]');if(s.length)s[s.length-1].focus()}
+ else if(a==='rmsub'){draft.subs.splice(+D.a,1);draft.od=true;draw()}
+ else if(a==='ico'){ldraft.icon=D.a;draw()}
+ else if(a==='snd'){S.mute=!S.mute;save();draw()}
+ else if(a==='invite'){const v=inv.trim();if(/^\S+@\S+\.\S+$/.test(v)){S.inv.push(v);inv='';save();draw();toast('Inbjudan sparad')}else toast('Skriv en giltig e-postadress.')}
+ else if(a==='rminv'){S.inv.splice(+D.a,1);save();draw()}
+ else if(a==='copy'){try{navigator.clipboard.writeText(location.href).then(()=>toast('Länken kopierades'),()=>toast('Kunde inte kopiera länken'))}catch(x){toast('Kunde inte kopiera länken')}}
+ else h=false;
+ if(h)e.stopImmediatePropagation()},true);
+document.addEventListener('input',e=>{const t=e.target;if(t.id==='hq'){qs=t.value;fillHome()}else if(t.dataset.s!==undefined)draft.subs[+t.dataset.s].t=t.value;else if(t.dataset.g==='inv')inv=t.value});
+document.addEventListener('toggle',e=>{if(e.target.tagName==='DETAILS'&&draft&&V==='add')draft.od=e.target.open},true);
+render();setInterval(sb,3e4);try{navigator.getBattery().then(b=>{$('.bat').textContent=Math.round(b.level*100)})}catch(e){}
 </script>
 </body>
 </html>
